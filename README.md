@@ -1,2 +1,1 @@
-# invoicer
-Created with CodeSandbox
+# Invoicer
