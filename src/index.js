@@ -17,6 +17,14 @@ function parseDate(d) {
   return Number.isNaN(parsed.getDate()) ? new Date('1970-01-01') : parsed
 }
 
+function _eachDayOfInterval(d1, d2) {
+  try {
+    return eachDayOfInterval(d1, d2)
+  } catch (err) {
+    return []
+  }
+}
+
 const configObj = window.localStorage.getItem("config")
   ? JSON.parse(window.localStorage.getItem("config"))
   : {
@@ -119,7 +127,7 @@ function App() {
     ),
     quantity:
       /%dateRange%/.test(it.title) && isValid(startDate) && isValid(endDate)
-        ? eachDayOfInterval({ start: startDate, end: endDate }).filter(
+        ? _eachDayOfInterval({ start: startDate, end: endDate }).filter(
             (it) => !isWeekend(it)
           ).length * 8
         : it.quantity
