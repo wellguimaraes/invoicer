@@ -4,16 +4,17 @@ import { formatDateRange } from "format-date-range.git";
 import { eachDayOfInterval, isValid, isWeekend } from "date-fns";
 import "./index.css";
 
-/**
- * @param {number} v
- * @returns {string}
- */
 function money(v) {
   return v.toLocaleString("en-US", {
     currency: "USD",
     currencyDisplay: "symbol",
     style: "currency"
   });
+}
+
+function parseDate(d) {
+  const parsed = new Date(d + "T23:59:59.000Z")
+  return Number.isNaN(parsed.getDate()) ? new Date('1970-01-01') : parsed
 }
 
 const configObj = window.localStorage.getItem("config")
@@ -107,8 +108,8 @@ function App() {
     paymentInstructions
   } = config;
 
-  const startDate = new Date(_startDate + "T23:59:59.000Z");
-  const endDate = new Date(_endDate + "T23:59:59.000Z");
+  const startDate = parseDate(_startDate);
+  const endDate = parseDate(_endDate);
 
   const paymentItems = _paymentItems.map((it) => ({
     ...it,
