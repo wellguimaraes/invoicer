@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import React from "react";
-import { formatDateRange } from "format-date-range.git";
+import { formatDateRange } from "format-date-range";
 import { eachDayOfInterval, isValid, isWeekend } from "date-fns";
 import "./index.css";
 
@@ -13,7 +13,7 @@ function money(v) {
 }
 
 function parseDate(d) {
-  const parsed = new Date(d + "T23:59:59.000Z")
+  const parsed = new Date(d + "T23:59:59.000")
   return Number.isNaN(parsed.getDate()) ? new Date('1970-01-01') : parsed
 }
 
@@ -109,7 +109,7 @@ function App() {
 
   const {
     myCompany,
-    dueDate,
+    dueDate: _dueDate,
     startDate: _startDate,
     endDate: _endDate,
     invoiceNumber,
@@ -118,6 +118,7 @@ function App() {
     paymentInstructions
   } = config;
 
+  const dueDate = parseDate(_dueDate)
   const startDate = parseDate(_startDate);
   const endDate = parseDate(_endDate);
 
@@ -163,8 +164,7 @@ function App() {
               {isValid(endDate) &&
                 endDate.toString().match(/[a-z]{3} \d{2} \d{4}/i)[0]}
             </div>
-            <div>{isValid(dueDate) &&
-                `Due Date: ${dueDate.toString().match(/[a-z]{3} \d{2} \d{4}/i)[0]}` }</div>
+            {isValid(dueDate) && <div><strong>Due Date:</strong> {dueDate?.toString().match(/[a-z]{3} \d{2} \d{4}/i)[0]}</div>}
           </div>
         </div>
       </div>
@@ -180,8 +180,8 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {paymentItems.map((it, i) => {
-              return (
+            {paymentItems.map((it, i) =>
+              (
                 <tr key={it.title}>
                   <td>{i + 1}</td>
                   <td>{it.title}</td>
@@ -189,8 +189,7 @@ function App() {
                   <td>{it.quantity}</td>
                   <td>{money(it.unitPrice * it.quantity)}</td>
                 </tr>
-              );
-            })}
+              ))}
           </tbody>
           <tfoot>
             <tr>

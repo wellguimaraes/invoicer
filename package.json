@@ -9,7 +9,7 @@
   "main": "src/index.js",
   "dependencies": {
     "date-fns": "2.23.0",
-    "format-date-range.git": "https://github.com/avantstay/format-date-range.git",
+    "format-date-range": "https://github.com/avantstay/format-date-range.git",
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-scripts": "3.0.1"
