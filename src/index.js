@@ -30,6 +30,7 @@ const configObj = window.localStorage.getItem("config")
   : {
       invoiceNumber: 1,
       invoicedCompany: ["Acme, Inc.", "invoices@acme.com"],
+      dueDate: "2021-01-22",
       startDate: "2021-01-01",
       endDate: "2021-01-15",
       myCompany: [
@@ -108,6 +109,7 @@ function App() {
 
   const {
     myCompany,
+    dueDate,
     startDate: _startDate,
     endDate: _endDate,
     invoiceNumber,
@@ -161,6 +163,8 @@ function App() {
               {isValid(endDate) &&
                 endDate.toString().match(/[a-z]{3} \d{2} \d{4}/i)[0]}
             </div>
+            <div>{isValid(dueDate) &&
+                `Due Date: ${dueDate.toString().match(/[a-z]{3} \d{2} \d{4}/i)[0]}` }</div>
           </div>
         </div>
       </div>
