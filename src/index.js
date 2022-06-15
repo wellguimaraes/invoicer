@@ -109,7 +109,7 @@ function App() {
 
   const {
     myCompany,
-    dueDate,
+    dueDate: _dueDate,
     startDate: _startDate,
     endDate: _endDate,
     invoiceNumber,
@@ -118,6 +118,7 @@ function App() {
     paymentInstructions
   } = config;
 
+  const dueDate = parseDate(_dueDate)
   const startDate = parseDate(_startDate);
   const endDate = parseDate(_endDate);
 
@@ -163,8 +164,7 @@ function App() {
               {isValid(endDate) &&
                 endDate.toString().match(/[a-z]{3} \d{2} \d{4}/i)[0]}
             </div>
-            <div>{isValid(dueDate) &&
-                `Due Date: ${dueDate.toString().match(/[a-z]{3} \d{2} \d{4}/i)[0]}` }</div>
+            {isValid(dueDate) && <div><strong>Due Date:</strong> {dueDate?.toString().match(/[a-z]{3} \d{2} \d{4}/i)[0]}</div>}
           </div>
         </div>
       </div>
