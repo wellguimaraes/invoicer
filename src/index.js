@@ -193,7 +193,7 @@ function App() {
           </tbody>
           <tfoot>
             <tr>
-              <td colSpan={4}>Total</td>
+              <td colSpan={2}>Total</td>
               <td>
                 {money(
                   paymentItems.reduce(
