@@ -174,8 +174,8 @@ function App() {
             <tr>
               <td>#</td>
               <td>Item description</td>
-              <td width="10%">Price</td>
-              <td width="12%">Quantity</td>
+              {/*<td width="10%">Price</td>*/}
+              {/*<td width="12%">Quantity</td>*/}
               <td width="15%">Subtotal</td>
             </tr>
           </thead>
@@ -185,8 +185,8 @@ function App() {
                 <tr key={it.title}>
                   <td>{i + 1}</td>
                   <td>{it.title}</td>
-                  <td>{money(it.unitPrice)}</td>
-                  <td>{it.quantity}</td>
+                  {/*<td>{money(it.unitPrice)}</td>*/}
+                  {/*<td>{it.quantity}</td>*/}
                   <td>{money(it.unitPrice * it.quantity)}</td>
                 </tr>
               ))}
